@@ -1,0 +1,90 @@
+:root{
+    --card-width: 90mm;
+    --card-height: 62mm;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.Cards {
+    border: 2px solid black;
+    width: var(--card-width);
+    height: var(--card-height);
+    box-sizing: border-box;
+}
+
+.backgroundImage{
+    width: calc(var(--card-width) - 4px);
+    height: calc(var(--card-height) - 4px);
+    opacity: 0.2;
+}
+
+.Bild {
+    position: relative;
+    top: -238px;
+}
+
+.Text{
+    position: relative;
+}
+
+.container01 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-weight: bolder;
+    margin-top: -1em;
+    margin-bottom: -1em;
+}
+
+.teilnehmer {
+    text-align: center;
+}
+
+.ueberschrift {
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.feuerwehr {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.preis {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.laufnummer {
+    text-align: center;
+    font-size: smaller;
+}
+
+@media print {
+    header{
+        display: none;
+    }
+    
+    footer{
+        display: none;
+    }
+
+    @page {
+        size: A4 Portrait;
+        margin: 5pt 0pt;
+    }
+
+    div{
+        break-inside:avoid;
+    }
+}
