@@ -29,6 +29,8 @@ function addVoucher(anzahl) {
     if (inpDatum == "" || inpTime == "" || inpPreis == "") {
         alert("Datum, Zeit oder Preis sind leer! Bitte eingeben.");
     } else {
+        const fixedChecksum = Date.now().toPrecision();
+
         for (let x = 1; x <= anzahl; x++) {
             let aktLauf = document.querySelectorAll(".Cards");
 
@@ -50,14 +52,19 @@ function addVoucher(anzahl) {
             let preis = document.createElement("p");
             // Laufnummer
             let lauf = document.createElement("p");
-            // Container für Datum und Uhrzeit
+            // Container für Elemente
             let container01 = document.createElement("div");
+            let container02 = document.createElement("div");
             // Hintergrund
             let background = document.createElement("img");
+            // Prüfziffer
+            let checksum = document.createElement("p");
+            checksum.classList.add("checksum");
+            checksum.textContent = fixedChecksum;
 
             background.classList.add("backgroundImage");
             background.setAttribute("src", "resourcen/Kartenspiel.jpg");
-            background.setAttribute("alt", "Kartenspiel")
+            background.setAttribute("alt", "https://blog.kinderinfowien.at/wp-content/uploads/2019/01/Kartenspiel-608x456.jpg");
 
             // Style für Karten
             div.classList.add("Cards");
@@ -69,7 +76,7 @@ function addVoucher(anzahl) {
             teil.classList.add("teilnehmer");
 
             // Überschift
-            header.textContent = "HENDELSCHNAPSEN";
+            header.textContent = "HENDLSCHNAPSEN";
             header.classList.add("ueberschrift");
 
             // Feuerwehr
@@ -104,12 +111,18 @@ function addVoucher(anzahl) {
             lauf.textContent = `${aktLauf.length + 1}`;
             lauf.classList.add("laufnummer");
 
+            container02.appendChild(checksum);
+            container02.appendChild(lauf);
+            container02.classList.add("container02");
+
             text.appendChild(teil);
             text.appendChild(header);
             text.appendChild(ff);
             text.appendChild(container01);
             text.appendChild(preis);
-            text.appendChild(lauf);
+            // text.appendChild(lauf);
+            text.appendChild(container02);
+
             bild.appendChild(background);
 
             div.appendChild(text);
