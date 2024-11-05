@@ -2,6 +2,13 @@
     --card-width: 90mm;
     --card-height: 62mm;
 }
+header{
+    margin-bottom: 2em;
+}
+
+footer{
+    margin-top: 2em;
+}
 
 main {
     display: flex;
