@@ -64,7 +64,7 @@ function addVoucher(anzahl) {
 
             background.classList.add("backgroundImage");
             background.setAttribute("src", "resourcen/Kartenspiel.jpg");
-            background.setAttribute("alt", "https://blog.kinderinfowien.at/wp-content/uploads/2019/01/Kartenspiel-608x456.jpg");
+            background.setAttribute("alt", "© Michael Putz, 05.11.2024");
 
             // Style für Karten
             div.classList.add("Cards");
