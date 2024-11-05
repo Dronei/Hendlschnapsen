@@ -13,12 +13,22 @@ function printVouchers() {
     addVoucher(anzahl.value);
 }
 
+/**
+ * Erzeugt die einzelnen Karten
+ * 
+ * @param {number} anzahl Anzahl der Karten die erzeugt werden sollen
+ */
 function addVoucher(anzahl) {
     let main = document.querySelector("main");
+
+    // Wert des Datum-Input
     let inpDatum = document.querySelector("#datum").value;
+    // Wert des Zeit-Input
     let inpTime = document.querySelector("#zeitpunkt").value;
+    // Wert des Preis-Input
     let inpPreis = document.querySelector("#preis").value;
 
+    // Child-Nodes entfernen wenn welche aus einem vorigen Lauf da wären
     let aktLauf = document.querySelectorAll(".Cards");
     if (aktLauf.length > 0) {
         for (const element of aktLauf) {
@@ -26,109 +36,111 @@ function addVoucher(anzahl) {
         }
     }
 
-    if (inpDatum == "" || inpTime == "" || inpPreis == "") {
-        alert("Datum, Zeit oder Preis sind leer! Bitte eingeben.");
-    } else {
-        const fixedChecksum = Date.now().toPrecision();
+    // Seriennummer um Prüfen zu können wann die Karte gedruckt wurde
+    const fixedChecksum = Date.now().toPrecision();
 
-        for (let x = 1; x <= anzahl; x++) {
-            let aktLauf = document.querySelectorAll(".Cards");
+    // Schleife zum Erzeugen der Child-Nodes
+    for (let x = 1; x <= anzahl; x++) {
+        let aktLauf = document.querySelectorAll(".Cards");
 
-            // Container
-            let div = document.createElement("div");
-            let text = document.createElement("div");
-            let bild = document.createElement("div");
-            // Teilnehmerkarte
-            let teil = document.createElement("p");
-            // Überschrift
-            let header = document.createElement("p");
-            // Feuerwehr
-            let ff = document.createElement("p");
-            // Datum
-            let datum = document.createElement("p");
-            // Uhrzeit
-            let time = document.createElement("p");
-            // Preis
-            let preis = document.createElement("p");
-            // Laufnummer
-            let lauf = document.createElement("p");
-            // Container für Elemente
-            let container01 = document.createElement("div");
-            let container02 = document.createElement("div");
-            // Hintergrund
-            let background = document.createElement("img");
-            // Prüfziffer
-            let checksum = document.createElement("p");
-            checksum.classList.add("checksum");
-            checksum.textContent = fixedChecksum;
+        // Container
+        let div = document.createElement("div");
+        let text = document.createElement("div");
+        let bild = document.createElement("div");
+        // Teilnehmerkarte
+        let teil = document.createElement("p");
+        // Überschrift
+        let header = document.createElement("p");
+        // Feuerwehr
+        let ff = document.createElement("p");
+        // Datum
+        let datum = document.createElement("p");
+        // Uhrzeit
+        let time = document.createElement("p");
+        // Preis
+        let preis = document.createElement("p");
+        // Laufnummer
+        let lauf = document.createElement("p");
+        // Container für Elemente
+        let container01 = document.createElement("div");
+        let container02 = document.createElement("div");
+        // Hintergrund
+        let background = document.createElement("img");
+        // Prüfziffer
+        let checksum = document.createElement("p");
+        checksum.classList.add("checksum");
+        checksum.textContent = fixedChecksum;
 
-            background.classList.add("backgroundImage");
-            background.setAttribute("src", "resourcen/Kartenspiel.jpg");
-            background.setAttribute("alt", "© Michael Putz, 05.11.2024");
+        // Hintergrundbild der Karten
+        background.classList.add("backgroundImage");
+        background.setAttribute("src", "resourcen/Kartenspiel.jpg");
+        background.setAttribute("alt", "© Michael Putz, 05.11.2024");
 
-            // Style für Karten
-            div.classList.add("Cards");
-            text.classList.add("Text");
-            bild.classList.add("Bild");
+        // Style für Karten
+        div.classList.add("Cards");
+        text.classList.add("Text");
+        bild.classList.add("Bild");
 
-            // Teilnehmerkarte
-            teil.textContent = `Teilnehmerkarte`;
-            teil.classList.add("teilnehmer");
+        // Teilnehmerkarte
+        teil.textContent = `Teilnehmerkarte`;
+        teil.classList.add("teilnehmer");
 
-            // Überschift
-            header.textContent = "HENDLSCHNAPSEN";
-            header.classList.add("ueberschrift");
+        // Überschift
+        header.textContent = "HENDLSCHNAPSEN";
+        header.classList.add("ueberschrift");
 
-            // Feuerwehr
-            ff.textContent = "F.F. Götzendorf";
-            ff.classList.add("feuerwehr");
+        // Feuerwehr
+        ff.textContent = "F.F. Götzendorf";
+        ff.classList.add("feuerwehr");
 
 
-            // Datum
-            let tempDate = new Date(inpDatum);
-            const options = {
-                day: "2-digit",
-                month: "numeric",
-                year: "numeric",
-            }
-            datum.textContent = tempDate.toLocaleDateString("de-DE", options);
-            datum.classList.add("datum");
+        // Datum
+        let tempDate = new Date(inpDatum);
+        const options = {
+            day: "2-digit",
+            month: "numeric",
+            year: "numeric",
+        };
 
-            // Zeitpunkt
-            time.textContent = `ab ${inpTime} Uhr`;
-            time.classList.add("zeitpunkt");
+        datum.textContent = tempDate.toLocaleDateString("de-DE", options);
+        datum.classList.add("datum");
 
-            // Container für Zeit und Datum
-            container01.appendChild(datum);
-            container01.appendChild(time);
-            container01.classList.add("container01");
+        // Zeitpunkt
+        time.textContent = `ab ${inpTime} Uhr`;
+        time.classList.add("zeitpunkt");
 
-            // Preis
-            preis.textContent = `Kartenpreis: € ${inpPreis}`;
-            preis.classList.add("preis");
+        // Container für Zeit und Datum
+        container01.appendChild(datum);
+        container01.appendChild(time);
+        container01.classList.add("container01");
 
-            // Laufnummer 
-            lauf.textContent = `${aktLauf.length + 1}`;
-            lauf.classList.add("laufnummer");
+        // Preis
+        preis.textContent = `Kartenpreis: € ${inpPreis}`;
+        preis.classList.add("preis");
 
-            container02.appendChild(checksum);
-            container02.appendChild(lauf);
-            container02.classList.add("container02");
+        // Laufnummer 
+        lauf.textContent = `${aktLauf.length + 1}`;
+        lauf.classList.add("laufnummer");
 
-            text.appendChild(teil);
-            text.appendChild(header);
-            text.appendChild(ff);
-            text.appendChild(container01);
-            text.appendChild(preis);
-            // text.appendChild(lauf);
-            text.appendChild(container02);
+        // Container für Prüfsumme und Laufnummer
+        container02.appendChild(checksum);
+        container02.appendChild(lauf);
+        container02.classList.add("container02");
 
-            bild.appendChild(background);
+        // Nodes die Children anfügen
+        text.appendChild(teil);
+        text.appendChild(header);
+        text.appendChild(ff);
+        text.appendChild(container01);
+        text.appendChild(preis);
+        
+        text.appendChild(container02);
 
-            div.appendChild(text);
-            div.appendChild(bild);
+        bild.appendChild(background);
 
-            main.appendChild(div);
-        }
+        div.appendChild(text);
+        div.appendChild(bild);
+
+        main.appendChild(div);
     }
-}   
+}
